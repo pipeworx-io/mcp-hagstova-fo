@@ -2,15 +2,15 @@
 
 Statistics Faroe Islands (Hagstova Føroya) PxWeb MCP.
 
-Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 250+ live data sources.
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1394+ live data sources.
 
 ## Tools
 
 | Tool | Description |
 |------|-------------|
-| `subjects` | Navigate the subject tree. Empty path returns the database list (drill into "H2"); items have type "l" (folder) or "t" (table, id ends in ".px"). |
-| `table_meta` | Table definition (dimensions, valid values). Path must end in the ".px" table id. |
-| `query_table` | Pull data from a table. body is a PxWeb query object. Mind PxWeb cell limits — narrow each dimension via selection.values. |
+| `subjects` | Browse the Statistics Faroe Islands (Hagstova Føroya) PxWeb subject tree. Empty path returns the database list; drill into 'H2' for folders (type 'l') and tables (type 't', id ends '.px'). Use the returned path to call table_meta or query_table. |
+| `table_meta` | Fetch dimension definitions and valid coded values for a Hagstova Føroya PxWeb table. Path must be the full table path ending in '.px' (e.g. 'H2/UO/UO01/land_oyfj.px'). Returns dimensions with their codes and value lists — required input for building a query_table body. |
+| `query_table` | POST a PxWeb query to a Hagstova Føroya table and return observations as json-stat2. body must be {query:[{code, selection:{filter,values}}], response:{format:'json-stat2'}}. PxWeb rejects requests exceeding its cell limit — narrow each dimension's selection.values using codes from table_meta. |
 
 ## Quick Start
 
@@ -26,7 +26,7 @@ Add to your MCP client (Claude Desktop, Cursor, Windsurf, etc.):
 }
 ```
 
-Or connect to the full Pipeworx gateway for access to all 250+ data sources:
+Or connect to the full Pipeworx gateway for access to all 1394+ data sources:
 
 ```json
 {
@@ -50,7 +50,7 @@ The gateway picks the right tool and fills the arguments automatically.
 
 ## More
 
-- [All tools and guides](https://github.com/pipeworx-io/examples)
+- [Docs and guides](https://pipeworx.io/docs)
 - [pipeworx.io](https://pipeworx.io)
 
 ## License
